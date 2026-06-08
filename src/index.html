@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harry Potter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="navbar__brand">
+      <a href="/home" class="navbar__logo" data-href="/home">
+       Harry Potter
+      </a>
+    </div>
+
+    <nav class="navbar__links">
+      <a href="/home"  class="nav-link" data-href="/home">Inicio</a>
+      <a href="/chat"  class="nav-link" data-href="/chat">Chat</a>
+      <a href="/about" class="nav-link" data-href="/about">Acerca de</a>
+    </nav>
+  
+    <button class="navbar__hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      ☰
+    </button>
+  </header>
+
+  <main id="app"></main>
+
+  <script type="module" src="app.js"></script>
+</body>
+<footer class="footer">
+  <p>Proyecto SPA con Gemini AI</p>
+</footer>
+</html>
