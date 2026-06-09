@@ -98,6 +98,8 @@ function setupCharacterSelection() {
 
 function renderChat() {
 
+console.log("Personaje seleccionado:", selectedCharacter);
+
   let name = "";
 
   switch (selectedCharacter) {
@@ -119,7 +121,12 @@ app.innerHTML = `
   <section class="chat">
 
     <header class="chat__header">
-      <h2>${name}</h2>
+      <h2 class="chat__title">
+        Conversando con ${name}
+      </h2>
+      <button id="clear-chat" class="chat__clear-btn">
+      Borrar historial
+      </button>
     </header>
 
     <div id="messages" class="chat__messages"></div>
@@ -133,6 +140,8 @@ app.innerHTML = `
       >
       <button type="submit">Enviar</button>
     </form>
+
+ 
 
   </section>
 `;

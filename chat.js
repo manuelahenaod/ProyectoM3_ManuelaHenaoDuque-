@@ -1,47 +1,64 @@
-let messages = {};
 let isTyping = false;
 
+const savedMessages =
+  localStorage.getItem("chat-history");
+
+const messages =
+  savedMessages
+    ? JSON.parse(savedMessages)
+    : {};
+
 export function setupChat(selectedCharacter) {
+
   const form = document.getElementById("chat-form");
   const input = document.getElementById("chat-input");
+  const clearButton = document.getElementById("clear-chat");
+
+  clearButton?.addEventListener("click", () => {
+    console.log("Borrando:", selectedCharacter);
+  clearChatHistory(selectedCharacter);
+  renderMessages(selectedCharacter);
+});
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const text = input.value.trim();
     if (!text) return;
-
     addMessage(selectedCharacter, "user", text);
     input.value = "";
-
     isTyping = true;
     renderMessages(selectedCharacter);
-
     setTimeout(() => {
       isTyping = false;
       addMessage(selectedCharacter, "bot", getFakeResponse(selectedCharacter));
     }, 1200);
-  });
-
+});
   renderMessages(selectedCharacter);
-}
+};
+  
 
 function renderMessages(selectedCharacter) {
   const container = document.getElementById("messages");
+  console.log("Container:", container);
+  console.log("Personaje:", selectedCharacter);
+  console.log("Historial:", messages[selectedCharacter]);
   if (!container) return;
 
   const chat = messages[selectedCharacter] || [];
 
   let html = chat.map(msg => `
     <div class="message message--${msg.sender}">
-      ${msg.text}
+      <p>${msg.text}</p>
+      <small>${msg.timestamp}</small>
     </div>
   `).join("");
 
   if (isTyping) {
     html += `
       <div class="message message--bot typing">
-        ${getCharacterName(selectedCharacter)} está escribiendo...
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     `;
   }
@@ -54,9 +71,28 @@ function addMessage(character, sender, text) {
   if (!messages[character]) {
     messages[character] = [];
   }
+  messages[character].push({
+    sender,
+    text,
+    timestamp: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
+  });
+  localStorage.setItem(
+    "chat-history",
+    JSON.stringify(messages)
+  );
 
-  messages[character].push({ sender, text });
   renderMessages(character);
+}
+
+export function clearChatHistory(character) {
+  messages[character] = [];
+  localStorage.setItem(
+    "chat-history",
+    JSON.stringify(messages)
+  );
 }
 
 function getFakeResponse(character) {
