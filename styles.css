@@ -352,14 +352,18 @@ body {
 /* =========================
    FOOTER
 ========================= */
-
 .footer {
   background-color: var(--green);
   color: white;
   text-align: center;
   padding: 1rem;
+  margin-top: auto;
+  font-size: 0.9rem;
 }
 
+.footer strong {
+  font-weight: 700;
+}
 /* =========================
    TABLET
 ========================= */
