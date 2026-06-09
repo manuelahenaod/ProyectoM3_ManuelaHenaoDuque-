@@ -1,8 +1,11 @@
 const app = document.getElementById("app");
+import { setupChat } from "./chat.js";
 
 let selectedCharacter = null;
 
-let messages = [];
+let messages =  {};
+
+let isTyping = false;
 
 
 // =====================
@@ -111,30 +114,6 @@ function renderChat() {
       break;
   }
 
-function setupChat() {
-  const form = document.getElementById("chat-form");
-  const input = document.getElementById("chat-input");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const text = input.value.trim();
-    if (!text) return;
-
-    addMessage("user", text);
-
-    input.value = "";
-
-
-
-    // Simulación de respuesta
-    setTimeout(() => {
-      addMessage("bot", getFakeResponse());
-    }, 500);
-  });
-
-  renderMessages();
-}
 
 app.innerHTML = `
   <section class="chat">
@@ -158,39 +137,10 @@ app.innerHTML = `
   </section>
 `;
 
-  setupChat();
+  setupChat(selectedCharacter);;
 }
 
-function renderMessages() {
-  const container = document.getElementById("messages");
 
-  if (!container) return;
-
-  container.innerHTML = messages.map(msg => `
-    <div class="message message--${msg.sender}">
-      ${msg.text}
-    </div>
-  `).join("");
-
-  container.scrollTop = container.scrollHeight;}
-
-function addMessage(sender, text) {
-  messages.push({ sender, text });
-  renderMessages();
-}
-
-function getFakeResponse() {
-  switch (selectedCharacter) {
-    case "chavo":
-      return "Fue sin querer queriendo...";
-    case "chilindrina":
-      return "¡Fíjate, fíjate!";
-    case "quico":
-      return "¡Cállate, cállate!";
-    default:
-      return "Hola!";
-  }
-}
 
 
 function renderAbout() {
