@@ -1,3 +1,8 @@
+import {
+  getFakeResponse,
+  formatTimestamp
+} from "./utils.js";
+
 let isTyping = false;
 
 const savedMessages =
@@ -15,7 +20,6 @@ export function setupChat(selectedCharacter) {
   const clearButton = document.getElementById("clear-chat");
 
   clearButton?.addEventListener("click", () => {
-    console.log("Borrando:", selectedCharacter);
   clearChatHistory(selectedCharacter);
   renderMessages(selectedCharacter);
 });
@@ -39,9 +43,6 @@ export function setupChat(selectedCharacter) {
 
 function renderMessages(selectedCharacter) {
   const container = document.getElementById("messages");
-  console.log("Container:", container);
-  console.log("Personaje:", selectedCharacter);
-  console.log("Historial:", messages[selectedCharacter]);
   if (!container) return;
 
   const chat = messages[selectedCharacter] || [];
@@ -62,7 +63,6 @@ function renderMessages(selectedCharacter) {
       </div>
     `;
   }
-
   container.innerHTML = html;
   container.scrollTop = container.scrollHeight;
 }
@@ -74,11 +74,8 @@ function addMessage(character, sender, text) {
   messages[character].push({
     sender,
     text,
-    timestamp: new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit"
-    })
-  });
+    timestamp: formatTimestamp()
+    });
   localStorage.setItem(
     "chat-history",
     JSON.stringify(messages)
@@ -93,19 +90,6 @@ export function clearChatHistory(character) {
     "chat-history",
     JSON.stringify(messages)
   );
-}
-
-function getFakeResponse(character) {
-  switch (character) {
-    case "chavo":
-      return "Fue sin querer queriendo...";
-    case "chilindrina":
-      return "¡Fíjate, fíjate!";
-    case "quico":
-      return "¡Cállate, cállate!";
-    default:
-      return "Hola!";
-  }
 }
 
 function getCharacterName(character) {

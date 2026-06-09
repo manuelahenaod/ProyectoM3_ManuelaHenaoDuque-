@@ -98,8 +98,6 @@ function setupCharacterSelection() {
 
 function renderChat() {
 
-console.log("Personaje seleccionado:", selectedCharacter);
-
   let name = "";
 
   switch (selectedCharacter) {
