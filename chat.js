@@ -1,45 +1,86 @@
-import {
-  getFakeResponse,
-  formatTimestamp
-} from "./utils.js";
+import { formatTimestamp } from "./utils.js";
 
 let isTyping = false;
 
-const savedMessages =
-  localStorage.getItem("chat-history");
+const savedMessages = localStorage.getItem("chat-history");
 
-const messages =
-  savedMessages
-    ? JSON.parse(savedMessages)
-    : {};
+const messages = savedMessages ? JSON.parse(savedMessages) : {};
+
+// =====================
+// SETUP CHAT
+// =====================
 
 export function setupChat(selectedCharacter) {
-
   const form = document.getElementById("chat-form");
   const input = document.getElementById("chat-input");
   const clearButton = document.getElementById("clear-chat");
 
-  clearButton?.addEventListener("click", () => {
-  clearChatHistory(selectedCharacter);
-  renderMessages(selectedCharacter);
-});
+  if (!messages[selectedCharacter]) {
+    messages[selectedCharacter] = [];
+  }
 
-  form.addEventListener("submit", (e) => {
+  clearButton?.addEventListener("click", () => {
+    clearChatHistory(selectedCharacter);
+    renderMessages(selectedCharacter);
+  });
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const text = input.value.trim();
     if (!text) return;
-    addMessage(selectedCharacter, "user", text);
+
     input.value = "";
+
+    addMessage(selectedCharacter, "user", text);
+
     isTyping = true;
     renderMessages(selectedCharacter);
-    setTimeout(() => {
+
+    try {
+      const history = messages[selectedCharacter] || [];
+
+      const formattedHistory = history.map((msg) => ({
+        role: msg.sender === "user" ? "user" : "model",
+        content: msg.text,
+      }));
+
+      const res = await fetch("/api/functions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          character: selectedCharacter,
+          messages: formattedHistory,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Error en la IA");
+      }
+
+      addMessage(selectedCharacter, "bot", data.reply);
+    } catch (error) {
+      addMessage(
+        selectedCharacter,
+        "bot",
+        "Error de conexión con la IA 😅"
+      );
+    } finally {
       isTyping = false;
-      addMessage(selectedCharacter, "bot", getFakeResponse(selectedCharacter));
-    }, 1200);
-});
+      renderMessages(selectedCharacter);
+    }
+  });
+
   renderMessages(selectedCharacter);
-};
-  
+}
+
+// =====================
+// RENDER MENSAJES
+// =====================
 
 function renderMessages(selectedCharacter) {
   const container = document.getElementById("messages");
@@ -47,12 +88,16 @@ function renderMessages(selectedCharacter) {
 
   const chat = messages[selectedCharacter] || [];
 
-  let html = chat.map(msg => `
+  let html = chat
+    .map(
+      (msg) => `
     <div class="message message--${msg.sender}">
       <p>${msg.text}</p>
       <small>${msg.timestamp}</small>
     </div>
-  `).join("");
+  `
+    )
+    .join("");
 
   if (isTyping) {
     html += `
@@ -63,40 +108,34 @@ function renderMessages(selectedCharacter) {
       </div>
     `;
   }
+
   container.innerHTML = html;
   container.scrollTop = container.scrollHeight;
 }
+
+// =====================
+// AGREGAR MENSAJE
+// =====================
 
 function addMessage(character, sender, text) {
   if (!messages[character]) {
     messages[character] = [];
   }
+
   messages[character].push({
     sender,
     text,
-    timestamp: formatTimestamp()
-    });
-  localStorage.setItem(
-    "chat-history",
-    JSON.stringify(messages)
-  );
+    timestamp: formatTimestamp(),
+  });
 
-  renderMessages(character);
+  localStorage.setItem("chat-history", JSON.stringify(messages));
 }
+
+// =====================
+// LIMPIAR CHAT
+// =====================
 
 export function clearChatHistory(character) {
   messages[character] = [];
-  localStorage.setItem(
-    "chat-history",
-    JSON.stringify(messages)
-  );
-}
-
-function getCharacterName(character) {
-  switch (character) {
-    case "chavo": return "El Chavo";
-    case "chilindrina": return "La Chilindrina";
-    case "quico": return "Quico";
-    default: return "Bot";
-  }
+  localStorage.setItem("chat-history", JSON.stringify(messages));
 }
