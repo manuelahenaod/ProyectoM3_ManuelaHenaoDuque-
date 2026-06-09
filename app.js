@@ -7,7 +7,6 @@ let messages =  {};
 
 let isTyping = false;
 
-
 // =====================
 // VISTAS
 // =====================
@@ -19,8 +18,17 @@ function renderHome() {
       <div class="home__container">
 
         <h1 class="home__title">
-          Elige con quién hablar
+          Bienvenido a la Vecindad del Chavo
         </h1>
+
+        <div class="home__card">
+          <p class="home__description">
+          Un chat interactivo donde puedes conversar con los personajes más queridos de la serie.
+          En esta experiencia, podrás hablar con El Chavo del 8, La Chilindrina y Quico, cada uno con su propia personalidad, estilo de conversación y forma única de responder.
+          Explora, conversa y diviértete como si estuvieras dentro del universo del Chavo del 8.
+          ¡Elige tu personaje favorito y comienza a chatear! 
+          </p>
+        </div>
 
         <div class="home__characters">
 
@@ -58,7 +66,7 @@ function renderHome() {
           class="home__button"
           disabled
         >
-          Comenzar conversación
+          Conversar
         </button>
 
       </div>
@@ -120,11 +128,8 @@ app.innerHTML = `
 
     <header class="chat__header">
       <h2 class="chat__title">
-        Conversando con ${name}
+       ${name}
       </h2>
-      <button id="clear-chat" class="chat__clear-btn">
-      Borrar historial
-      </button>
     </header>
 
     <div id="messages" class="chat__messages"></div>
@@ -136,7 +141,15 @@ app.innerHTML = `
         placeholder="Escribe un mensaje..."
         required
       >
-      <button type="submit">Enviar</button>
+
+      <button type="submit" class="chat__send-btn" aria-label="Enviar mensaje">
+      ➤
+      </button>
+
+      <button type="button" id="clear-chat" class="chat__clear-btn" aria-label="Borrar historial">
+      🗑
+      </button>
+
     </form>
 
  
@@ -174,15 +187,11 @@ function renderAbout() {
 // =====================
 
 function router() {
-
   let path = window.location.pathname;
-
   if (path === "/index.html") {
     path = "/";
   }
   
-
-
   switch (path) {
     case "/":
     case "/home":
@@ -213,37 +222,27 @@ function navigateTo(path) {
   history.pushState({}, "", path);
   router();
 }
-
-
-
 // =====================
 // EVENTOS NAVBAR
 // =====================
 
 document.addEventListener("click", (event) => {
   const link = event.target.closest("[data-href]");
-
   if (!link) return;
-
   event.preventDefault();
-
   navigateTo(link.dataset.href);
 });
 
 // =====================
 // BOTONES ATRÁS/ADELANTE
 // =====================
-
 window.addEventListener("popstate", router);
-
 // MENÚ HAMBURGUESA
 
 const hamburgerBtn =
   document.getElementById("hamburger-btn");
-
 const navLinks =
   document.querySelector(".navbar__links");
-
 hamburgerBtn?.addEventListener("click", () => {
   navLinks.classList.toggle(
     "navbar__links--active"
@@ -252,6 +251,5 @@ hamburgerBtn?.addEventListener("click", () => {
 // =====================
 // INICIO
 // =====================
-
 router();
 
