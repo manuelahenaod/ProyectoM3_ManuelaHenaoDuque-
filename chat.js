@@ -1,4 +1,8 @@
-import { formatTimestamp } from "./utils.js";
+import { formatTimestamp, 
+  buildMessagesPayload, 
+  parseAIResponse, 
+  isValidMessage
+ } from "./utils.js";
 
 let isTyping = false;
 
@@ -32,6 +36,10 @@ export function setupChat(selectedCharacter) {
 
     input.value = "";
 
+    if (!isValidMessage(text)) {
+      return;
+    }
+
     addMessage(selectedCharacter, "user", text);
 
     isTyping = true;
@@ -45,6 +53,13 @@ export function setupChat(selectedCharacter) {
         content: msg.text,
       }));
 
+      const payload = buildMessagesPayload(formattedHistory);
+
+      payload.push({
+        role: "user",
+        content: text,
+      });
+
       const res = await fetch("/api/functions", {
         method: "POST",
         headers: {
@@ -52,23 +67,13 @@ export function setupChat(selectedCharacter) {
         },
         body: JSON.stringify({
           character: selectedCharacter,
-          messages: formattedHistory,
+          messages: payload,
         }),
       });
 
       const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Error en la IA");
-      }
-
-      addMessage(selectedCharacter, "bot", data.reply);
-    } catch (error) {
-      addMessage(
-        selectedCharacter,
-        "bot",
-        "Error de conexión con la IA 😅"
-      );
+      const reply = parseAIResponse(data);
+      addMessage(selectedCharacter, "bot", reply);
     } finally {
       isTyping = false;
       renderMessages(selectedCharacter);
