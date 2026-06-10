@@ -23,6 +23,7 @@ function renderHome() {
 
         <h1 class="home__title">
           Bienvenido a la Vecindad del Chavo
+          <span>la Vecindad del Chavo!</span>
         </h1>
 
         <div class="home__card">
