@@ -194,7 +194,21 @@ function renderAbout() {
 
   </section>
 `;
+}
 
+function renderNotFound() {
+  app.innerHTML = `
+    <section class="notfound">
+
+      <h1>404</h1>
+      <p>Página no encontrada</p>
+
+      <button onclick="location.href='/home'">
+        Volver al inicio
+      </button>
+
+    </section>
+  `;
 }
 
 // =====================
@@ -203,29 +217,24 @@ function renderAbout() {
 
 function router() {
   let path = window.location.pathname;
+
   if (path === "/index.html") {
     path = "/";
   }
-  
-  switch (path) {
-    case "/":
-    case "/home":
-      renderHome();
-      break;
 
-    case "/chat":
-      renderChat();
-      break;
+  const routes = {
+    "/": renderHome,
+    "/home": renderHome,
+    "/chat": renderChat,
+    "/about": renderAbout
+  };
 
-    case "/about":
-      renderAbout();
-      break;
+  const render = routes[path];
 
-    default:
-      app.innerHTML = `
-        <h1>404</h1>
-        <p>Página no encontrada.</p>
-      `;
+  if (render) {
+    render();
+  } else {
+    renderNotFound();
   }
 }
 

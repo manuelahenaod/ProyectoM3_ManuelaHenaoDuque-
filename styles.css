@@ -572,6 +572,32 @@ body {
   border-radius: 999px;
   font-size: .8rem;
 }
+
+/* =========================
+   NOT FOUND
+========================= */
+
+.notfound {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notfound h1 {
+  font-size: 3rem;
+  color: var(--brown);
+}
+
+.notfound button {
+  background: var(--yellow);
+  border: none;
+  padding: .6rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
 /* =========================
    FOOTER
 ========================= */
