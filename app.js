@@ -152,7 +152,7 @@ function renderChat() {
 
       <form id="chat-form" class="chat__input-area">
         <input
-          id="messageInput"
+          id="chat-input"
           name="message"
           type="text"
           autocomplete="off"

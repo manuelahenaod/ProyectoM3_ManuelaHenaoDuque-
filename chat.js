@@ -109,6 +109,13 @@ export function setupChat(selectedCharacter, options = {}) {
   });
 
   renderMessages(selectedCharacter);
+  requestAnimationFrame(() => {
+  const container = document.getElementById("messages");
+  if (container) {
+    container.scrollTop = container.scrollHeight;
+  }
+
+  });
 }
 
 // =====================
@@ -148,7 +155,16 @@ function renderMessages(selectedCharacter) {
   }
 
   container.innerHTML = html;
-  container.scrollTop = container.scrollHeight;
+  requestAnimationFrame(() => {
+
+    console.log(
+    "scrollTop:",
+    container.scrollTop,
+    "scrollHeight:",
+    container.scrollHeight
+  );
+    container.scrollTop = container.scrollHeight;
+  });
 }
 
 // =====================

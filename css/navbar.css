@@ -1,0 +1,122 @@
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: rgba(93, 145, 59, 0.85);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: .8rem 1.2rem;
+
+  box-shadow:
+    0 4px 20px rgba(0,0,0,.15);
+}
+
+.navbar__top {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.navbar__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: .3px;
+  margin: 0;
+}
+
+.navbar__logo-image {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  transition: all .25s ease;
+}
+
+.navbar__logo-image:hover {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 0 6px rgba(244, 197, 66, 0.7));
+}
+
+.navbar__links {
+  display: none;
+}
+
+.navbar__links a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: .4rem .6rem;
+  border-radius: 8px;
+  transition: all .2s ease;
+}
+
+.navbar__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: var(--yellow);
+  transition: width .25s ease;
+}
+
+.navbar__links a:hover::after {
+  width: 100%;
+}
+
+.navbar__links a.active {
+  background: rgba(255,255,255,0.15);
+}
+
+.navbar__hamburger {
+  font-size: 1.5rem;
+  padding: .3rem .6rem;
+  border-radius: 10px;
+  transition: background .2s;
+}
+
+.navbar__hamburger:hover {
+  background: rgba(255,255,255,.15);
+}
+
+.navbar__links--active {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+
+  padding: 1rem;
+  border-radius: 16px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.2);
+
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.navbar__links--active a {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+}
+
+.navbar__links--active a:hover {
+  background: #f5efe5;
+}

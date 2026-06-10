@@ -1,0 +1,84 @@
+/* =========================
+   TABLET — 768px
+========================= */
+
+@media (min-width: 768px) {
+
+  .navbar__links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .navbar__links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .navbar__hamburger {
+    display: none;
+  }
+
+  .navbar__title {
+    font-size: 1.2rem;
+  }
+
+  .navbar__logo-image {
+    width: 45px;
+    height: 45px;
+  }
+
+  .home__title {
+    font-size: 2.6rem;
+  }
+
+  .home__characters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .character-card__image {
+    width: 110px;
+    height: 110px;
+  }
+
+  .chat {
+    max-width: 850px;
+  }
+
+  .chat__title {
+    font-size: 2.2rem;
+  }
+
+  .chat__messages {
+    min-height: 500px;
+  }
+}
+
+/* =========================
+   DESKTOP — 1024px
+========================= */
+
+@media (min-width: 1024px) {
+
+  #app {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .navbar__logo-image {
+    width: 55px;
+    height: 55px;
+  }
+
+  .home__characters {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .home__title {
+    font-size: 3rem;
+  }
+}
