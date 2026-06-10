@@ -26,7 +26,6 @@ export function setupChat(selectedCharacter, options = {}) {
     messages[selectedCharacter] = [];
   }
 
-  // 🔥 limpiar solo si es acceso por defecto
   if (isDefault && selectedCharacter === "chavo") {
     messages["chavo"] = [];
     localStorage.setItem("chat-history", JSON.stringify(messages));
@@ -42,13 +41,11 @@ export function setupChat(selectedCharacter, options = {}) {
 
     const text = input.value.trim();
     if (!text) return;
-
     input.value = "";
 
     if (!isValidMessage(text)) return;
 
     addMessage(selectedCharacter, "user", text);
-
     isTyping = true;
     renderMessages(selectedCharacter);
 
@@ -101,17 +98,22 @@ function renderMessages(selectedCharacter) {
   if (!container) return;
 
   const chat = messages[selectedCharacter] || [];
+    let html = chat.map(msg => {
+      const isBot = msg.sender === "bot";
+      return `
+        <div class="message message--${msg.sender}">
+          ${isBot ? `
+            <img src="./images/${selectedCharacter}.png" class="message__avatar"/>
+          ` : ""}
 
-  let html = chat
-    .map(
-      (msg) => `
-    <div class="message message--${msg.sender}">
-      <p>${msg.text}</p>
-      <small>${msg.timestamp}</small>
-    </div>
-  `
-    )
-    .join("");
+          <div class="message__content">
+            <p>${msg.text}</p>
+            <small>${msg.timestamp}</small>
+          </div>
+
+        </div>
+      `;
+      }).join("");
 
   if (isTyping) {
     html += `

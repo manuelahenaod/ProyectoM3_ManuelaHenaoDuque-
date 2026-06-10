@@ -28,10 +28,9 @@ function renderHome() {
 
         <div class="home__card">
           <p class="home__description">
-          Un chat interactivo donde puedes conversar con los personajes más queridos de la serie.
-          En esta experiencia, podrás hablar con El Chavo del 8, La Chilindrina y Quico, cada uno con su propia personalidad, estilo de conversación y forma única de responder.
+          Un chat interactivo donde puedes conversar con los personajes más queridos de la serie. Cada uno con su propia personalidad, estilo de conversación y forma única de responder.
           Explora, conversa y diviértete como si estuvieras dentro del universo del Chavo del 8.
-          ¡Elige tu personaje favorito y comienza a chatear! 
+          <strong>¡Elige tu personaje favorito y comienza a chatear! </strong>
           </p>
         </div>
 
@@ -41,7 +40,7 @@ function renderHome() {
             class="character-card"
             data-character="chavo"
           >
-          <img src="./images/chavo.png" alt="El Chavo" class="character-card__image" />
+          <img src="./images/chavoperfil.png" alt="El Chavo" class="character-card__image" />
             <h2>El Chavo</h2>
             <p>Inocente, distraído y muy divertido.</p>
           </article>
@@ -50,7 +49,7 @@ function renderHome() {
             class="character-card"
             data-character="chilindrina"
           >
-          <img src="./images/chilindrina.png" alt="La Chilindrina" class="character-card__image" />
+          <img src="./images/chilindrinaperfil.png" alt="La Chilindrina" class="character-card__image" />
             <h2>La Chilindrina</h2>
             <p>Traviesa e inteligente.</p>
           </article>
@@ -59,7 +58,7 @@ function renderHome() {
             class="character-card"
             data-character="quico"
           >
-          <img src="./images/quico.png" alt="Quico" class="character-card__image" />
+          <img src="./images/quicoperfil.png" alt="Quico" class="character-card__image" />
             <h2>Quico</h2>
             <p>Consentido y presumido.</p>
           </article>

@@ -72,6 +72,7 @@ body {
 .navbar__logo-image {
   width: 38px;
   height: 38px;
+  object-fit: contain;
   transition: all .25s ease;
 }
 
@@ -454,6 +455,9 @@ body {
   padding: 10px;
   border-radius: 12px;
   max-width: 75%;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.6rem;
 }
 
 .message--user {
@@ -479,6 +483,14 @@ body {
   margin-top: .5rem;
   color: #666;
   font-size: .8rem;
+}
+
+
+.message__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .typing {
