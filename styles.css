@@ -247,6 +247,10 @@ body {
 }
 
 .home__button {
+  display: none;
+}
+
+.home__button--visible {
   display: block;
   width: 100%;
   max-width:280px;
@@ -613,6 +617,10 @@ body {
 .footer strong {
   font-weight: 700;
 }
+
+.footer--hidden {
+  display: none;
+}
 /* =========================
    TABLET
 ========================= */
@@ -650,6 +658,7 @@ body {
   .home__characters {
     grid-template-columns: repeat(2, 1fr);
   }
+
 
   .character-card__image {
     width: 110px;

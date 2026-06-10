@@ -16,6 +16,7 @@ function getCharacter() {
 }
 
 function renderHome() {
+  document.querySelector(".footer")?.classList.remove("footer--hidden");
   app.innerHTML = `
     <section class="home">
 
@@ -86,7 +87,6 @@ function setupCharacterSelection() {
   const button = document.getElementById("go-chat");
 
   cards.forEach(card => {
-
     card.addEventListener("click", () => {
 
       cards.forEach(c =>
@@ -100,8 +100,12 @@ function setupCharacterSelection() {
       localStorage.setItem("character", character);
 
       button.disabled = false;
-    });
+      button.classList.add("home__button--visible");
+      card.appendChild(button);
+        } 
+    );
   });
+
 
   button.addEventListener("click", () => {
     navigateTo("/chat");
@@ -110,7 +114,7 @@ function setupCharacterSelection() {
 
 
 function renderChat() {
-
+  document.querySelector(".footer")?.classList.add("footer--hidden");
   const storedCharacter = getCharacter();
 
   if (!selectedCharacter && !storedCharacter) {
@@ -168,6 +172,7 @@ function renderChat() {
 
 
 function renderAbout() {
+ document.querySelector(".footer")?.classList.remove("footer--hidden");
  app.innerHTML = `
   <section class="about">
 
