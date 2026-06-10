@@ -11,6 +11,10 @@ let isTyping = false;
 // VISTAS
 // =====================
 
+function getCharacter() {
+  return localStorage.getItem("character");
+}
+
 function renderHome() {
   app.innerHTML = `
     <section class="home">
@@ -91,8 +95,9 @@ function setupCharacterSelection() {
 
       card.classList.add("character-card--selected");
 
-      selectedCharacter =
-        card.dataset.character;
+      const character = card.dataset.character;
+      selectedCharacter = character;
+      localStorage.setItem("character", character);
 
       button.disabled = false;
     });
@@ -106,60 +111,53 @@ function setupCharacterSelection() {
 
 function renderChat() {
 
+  const storedCharacter = getCharacter();
+
+  if (!selectedCharacter && !storedCharacter) {
+    selectedCharacter = "chavo";
+  } else {
+    selectedCharacter = selectedCharacter || storedCharacter;
+  }
+
+  const isDefault = !storedCharacter;
+
   let name = "";
 
   switch (selectedCharacter) {
     case "chavo":
       name = "El Chavo";
       break;
-
     case "chilindrina":
       name = "La Chilindrina";
       break;
-
     case "quico":
       name = "Quico";
       break;
+    default:
+      name = "El Chavo";
   }
 
+  app.innerHTML = `
+    <section class="chat">
 
-app.innerHTML = `
-  <section class="chat">
+      <header class="chat__header">
+        <h2 class="chat__title">${name}</h2>
+      </header>
 
-    <header class="chat__header">
-      <h2 class="chat__title">
-       ${name}
-      </h2>
-    </header>
+      <div id="messages" class="chat__messages"></div>
 
-    <div id="messages" class="chat__messages"></div>
+      <form id="chat-form" class="chat__input-area">
+        <input id="chat-input" type="text" placeholder="Escribe un mensaje..." required>
 
-    <form id="chat-form" class="chat__input-area">
-      <input
-        id="chat-input"
-        type="text"
-        placeholder="Escribe un mensaje..."
-        required
-      >
+        <button type="submit">➤</button>
+        <button type="button" id="clear-chat">🗑</button>
+      </form>
 
-      <button type="submit" class="chat__send-btn" aria-label="Enviar mensaje">
-      ➤
-      </button>
+    </section>
+  `;
 
-      <button type="button" id="clear-chat" class="chat__clear-btn" aria-label="Borrar historial">
-      🗑
-      </button>
-
-    </form>
-
- 
-
-  </section>
-`;
-
-  setupChat(selectedCharacter);;
+  setupChat(selectedCharacter, { isDefault });
 }
-
 
 
 

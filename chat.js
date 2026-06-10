@@ -14,13 +14,22 @@ const messages = savedMessages ? JSON.parse(savedMessages) : {};
 // SETUP CHAT
 // =====================
 
-export function setupChat(selectedCharacter) {
+export function setupChat(selectedCharacter, options = {}) {
+
+  const { isDefault = false } = options;
+
   const form = document.getElementById("chat-form");
   const input = document.getElementById("chat-input");
   const clearButton = document.getElementById("clear-chat");
 
   if (!messages[selectedCharacter]) {
     messages[selectedCharacter] = [];
+  }
+
+  // 🔥 limpiar solo si es acceso por defecto
+  if (isDefault && selectedCharacter === "chavo") {
+    messages["chavo"] = [];
+    localStorage.setItem("chat-history", JSON.stringify(messages));
   }
 
   clearButton?.addEventListener("click", () => {
@@ -36,9 +45,7 @@ export function setupChat(selectedCharacter) {
 
     input.value = "";
 
-    if (!isValidMessage(text)) {
-      return;
-    }
+    if (!isValidMessage(text)) return;
 
     addMessage(selectedCharacter, "user", text);
 
@@ -73,7 +80,9 @@ export function setupChat(selectedCharacter) {
 
       const data = await res.json();
       const reply = parseAIResponse(data);
+
       addMessage(selectedCharacter, "bot", reply);
+
     } finally {
       isTyping = false;
       renderMessages(selectedCharacter);
