@@ -6,15 +6,25 @@ import { formatTimestamp,
 
 let isTyping = false;
 
-const savedMessages = localStorage.getItem("chat-history");
+function getInitialMessages() {
+  const saved = localStorage.getItem("chat-history");
+  return saved ? JSON.parse(saved) : {};
+}
 
-const messages = savedMessages ? JSON.parse(savedMessages) : {};
+let messages = {};
+
+function initMessages() {
+  if (Object.keys(messages).length === 0) {
+    messages = getInitialMessages();
+  }
+}
 
 // =====================
 // SETUP CHAT
 // =====================
 
 export function setupChat(selectedCharacter, options = {}) {
+  initMessages();
 
   const { isDefault = false } = options;
 
@@ -74,11 +84,23 @@ export function setupChat(selectedCharacter, options = {}) {
           messages: payload,
         }),
       });
-
       const data = await res.json();
-      const reply = parseAIResponse(data);
 
+      if (!res.ok) {
+        throw new Error(data.error || "Error desconocido");
+      }
+      const reply = parseAIResponse(data);
       addMessage(selectedCharacter, "bot", reply);
+
+      } catch (error) {
+      console.error("Error en la API:", error);
+
+      addMessage(
+        selectedCharacter,
+        "bot",
+        error.message || "Ups... algo salió mal 😓"
+      );
+
 
     } finally {
       isTyping = false;

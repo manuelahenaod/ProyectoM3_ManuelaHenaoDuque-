@@ -215,7 +215,7 @@ function renderNotFound() {
 // ROUTER
 // =====================
 
-function router() {
+export function router() {
   let path = window.location.pathname;
 
   if (path === "/index.html") {
@@ -275,5 +275,7 @@ hamburgerBtn?.addEventListener("click", () => {
 // =====================
 // INICIO
 // =====================
-router();
+export function initApp() {
+  router();
+}
 
