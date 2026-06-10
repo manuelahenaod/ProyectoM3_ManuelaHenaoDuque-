@@ -147,8 +147,14 @@ function renderChat() {
       <div id="messages" class="chat__messages"></div>
 
       <form id="chat-form" class="chat__input-area">
-        <input id="chat-input" type="text" placeholder="Escribe un mensaje..." required>
-
+        <input
+          id="messageInput"
+          name="message"
+          type="text"
+          autocomplete="off"
+          enterkeyhint="send"
+          placeholder="Escribe un mensaje..."
+        >
         <button type="submit">➤</button>
         <button type="button" id="clear-chat">🗑</button>
       </form>
@@ -243,6 +249,7 @@ export function router() {
 // =====================
 
 function navigateTo(path) {
+  navLinks?.classList.remove("navbar__links--active");
   history.pushState({}, "", path);
   router();
 }
