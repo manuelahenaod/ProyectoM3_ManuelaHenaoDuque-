@@ -2,10 +2,14 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const apiKey = process.env.GEMINI_API_KEY;
 
+if (!apiKey) {
+  throw new Error("Falta GEMINI_API_KEY en variables de entorno");
+}
+
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // =========================
-// PROMPTS DE PERSONAJES
+// PROMPTS
 // =========================
 
 const SYSTEM_PROMPTS = {
@@ -62,15 +66,26 @@ REGLAS:
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Solo POST permitido" });
+    return res.status(405).json({
+      error: "Método no permitido. Solo POST",
+    });
   }
 
   try {
     const { messages, character } = req.body;
 
-    if (!messages || !character) {
+    // ─────────────────────────────
+    // VALIDACIÓN DE ENTRADA
+    // ─────────────────────────────
+    if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({
-        error: "Faltan messages o character",
+        error: "messages debe ser un array no vacío",
+      });
+    }
+
+    if (!character) {
+      return res.status(400).json({
+        error: "Falta el personaje (character)",
       });
     }
 
@@ -78,7 +93,7 @@ export default async function handler(req, res) {
       SYSTEM_PROMPTS[character] || SYSTEM_PROMPTS.chavo;
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-3.1-flash-lite",
+      model: "gemini-3.1-flash-lite", 
       systemInstruction: systemPrompt,
     });
 
@@ -88,6 +103,12 @@ export default async function handler(req, res) {
     }));
 
     const lastMessage = messages[messages.length - 1];
+
+    if (!lastMessage?.content) {
+      return res.status(400).json({
+        error: "Último mensaje inválido",
+      });
+    }
 
     const chat = model.startChat({
       history,
@@ -99,16 +120,49 @@ export default async function handler(req, res) {
 
     const result = await chat.sendMessage(lastMessage.content);
     const response = await result.response;
+    const text = response.text()?.trim();
+
+    if (!text) {
+      return res.status(502).json({
+        error: "La IA no devolvió una respuesta válida",
+      });
+    }
 
     return res.status(200).json({
-      reply: response.text(),
+      reply: text,
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("Gemini error:", error);
 
+    // ─────────────────────────────
+    // MANEJO DE ERRORES POR TIPO
+    // ─────────────────────────────
+
+    // Rate limit (demasiadas peticiones)
+    if (error?.status === 429) {
+      return res.status(429).json({
+        error: "Demasiadas solicitudes. Espera unos segundos e intenta de nuevo",
+      });
+    }
+
+    // API key inválida o problemas auth
+    if (error?.status === 401 || error?.message?.includes("API_KEY")) {
+      return res.status(401).json({
+        error: "Error de autenticación con la API",
+      });
+    }
+
+    // Quota excedida (muy común en Gemini free tier)
+    if (error?.message?.toLowerCase().includes("quota")) {
+      return res.status(429).json({
+        error: "Cuota de IA agotada. Intenta más tarde o revisa tu plan de API",
+      });
+    }
+
+    // Error genérico
     return res.status(500).json({
-      error: "Error generando respuesta",
+      error: "Error interno del servidor",
     });
   }
 }
