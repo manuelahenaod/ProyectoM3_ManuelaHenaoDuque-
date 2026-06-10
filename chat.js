@@ -84,22 +84,22 @@ export function setupChat(selectedCharacter, options = {}) {
           messages: payload,
         }),
       });
-      const data = await res.json();
+
+      let data;
+
+      try {
+        data = await res.json();
+      } catch {
+        const text = await res.text();
+        throw new Error(text || "Error inesperado del servidor");
+      }
 
       if (!res.ok) {
-        throw new Error(data.error || "Error desconocido");
+        throw new Error(data.error || "Error en la API");
       }
+
       const reply = parseAIResponse(data);
       addMessage(selectedCharacter, "bot", reply);
-
-      } catch (error) {
-      console.error("Error en la API:", error);
-
-      addMessage(
-        selectedCharacter,
-        "bot",
-        error.message || "Ups... algo salió mal 😓"
-      );
 
 
     } finally {
