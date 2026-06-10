@@ -1,46 +1,93 @@
-/* =========================
-   ABOUT
-========================= */
-
 .about {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 80px);
-  padding: 1rem;
+  align-items: flex-start;
+  padding: 1.5rem 1rem;
 }
-
+ 
 .about__card {
-  max-width: 600px;
+  width: 100%;
+  max-width: 92vw;
   background: white;
-  padding: 2rem;
+  padding: 1.8rem 1.5rem;
   border-radius: 20px;
   text-align: center;
   box-shadow: 0 15px 40px rgba(0,0,0,.1);
 }
-
+ 
 .about__title {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: var(--brown);
-  margin-bottom: 1rem;
+  margin-bottom: .75rem;
 }
-
+ 
 .about__intro {
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: .75rem;
+  line-height: 1.5;
+  font-size: .95rem;
 }
-
+ 
+.about__card > p:not(.about__intro) {
+  font-size: .9rem;
+  line-height: 1.5;
+}
+ 
 .about__tags {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: .5rem;
-  margin-top: 1.5rem;
+  gap: .4rem;
+  margin-top: 1rem;
 }
-
+ 
 .about__tags span {
   background: var(--cream);
-  padding: .4rem .8rem;
+  padding: .3rem .75rem;
   border-radius: 999px;
   font-size: .8rem;
 }
+ 
+.about__divider {
+  border: none;
+  border-top: 1px solid rgba(0,0,0,.08);
+  margin: 1.2rem 0;
+}
+ 
+.about__credits-title {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  opacity: .7;
+}
+ 
+.about__credits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .6rem;
+}
+ 
+.about__credit-item {
+  background: var(--cream);
+  border-radius: 14px;
+  padding: .75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+ 
+.about__credit-item strong {
+  font-size: .85rem;
+  color: var(--brown);
+}
+ 
+.about__credit-item span {
+  font-size: .75rem;
+  color: #888;
+  line-height: 1.4;
+}
+ 

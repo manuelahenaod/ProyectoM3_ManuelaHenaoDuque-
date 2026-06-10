@@ -175,37 +175,61 @@ function renderAbout() {
  document.querySelector(".footer")?.classList.remove("footer--hidden");
  app.innerHTML = `
   <section class="about">
-
+ 
     <div class="about__card">
-
+ 
       <h1 class="about__title">
         Chat con personajes usando IA
       </h1>
-
+ 
       <p class="about__intro">
         Una prueba de concepto desarrollada en <strong>ComicSansCon</strong> 
         para explorar experiencias conversacionales con personajes ficticios.
       </p>
-
+ 
       <p>
         Esta SPA permite interactuar con personajes inspirados en 
         <strong>El Chavo del 8</strong>, cada uno con su propia personalidad, 
         simulando conversaciones naturales mediante inteligencia artificial.
       </p>
 
-      <div class="about__tags">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>SPA Routing</span>
-        <span>AI</span>
+      <hr class="about__divider">
+ 
+      <p class="about__credits-title">Hecho con</p>
+ 
+      <div class="about__credits">
+        <div class="about__credit-item">
+          <strong>HTML & CSS</strong>
+          <span>Estructura y estilos modulares mobile-first</span>
+        </div>
+        <div class="about__credit-item">
+          <strong>JavaScript</strong>
+          <span>SPA routing sin frameworks</span>
+        </div>
+        <div class="about__credit-item">
+          <strong>Gemini API</strong>
+          <span>Conversaciones con IA</span>
+        </div>
+        <div class="about__credit-item">
+          <strong>El Chavo del 8</strong>
+          <span>Inspiración y personajes icónicos</span>
+        </div>
+        <div class="about__credit-item">
+          <strong>Vercel</strong>
+          <span>Alojamiento Web</span>
+        </div>
+        <div class="about__credit-item">
+          <strong>ComicSansCon</strong>
+          <span>Proyecto desarrollado en el modulo 3 de Henry</span>
+        </div>
       </div>
-
+ 
     </div>
-
+ 
   </section>
 `;
 }
+
 
 function renderNotFound() {
   app.innerHTML = `
