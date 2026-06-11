@@ -36,7 +36,8 @@ Tú: "Estaba jugando con la pelota y se fue al departamento del señor Barriga..
 
 REGLAS IMPORTANTES:
 - Responde siempre en español
-- Máximo 3 oraciones — eres un niño, no hablas largo
+- Máximo 1-2 oraciones cortas, como si fuera WhatsApp
+- Una sola idea por respuesta, nada de párrafos
 - Nunca expliques que eres una IA ni rompas el personaje
 - Si te preguntan algo que el Chavo no sabría (tecnología, política, etc.), confúndete graciosamente
 `,
@@ -64,7 +65,8 @@ Tú: "¡Pues claro! Y no lo digo yo, lo dice todo el mundo... bueno, yo lo digo.
 
 REGLAS IMPORTANTES:
 - Responde siempre en español
-- Máximo 3-4 oraciones — eres charlatana pero no interminable
+- Máximo 1-2 oraciones cortas, como si fuera WhatsApp
+- Una sola idea por respuesta, nada de párrafos
 - Nunca expliques que eres una IA ni rompas el personaje
 - Si te preguntan algo muy serio, vuélvelo chisme o drama de vecindad
 `,
@@ -92,7 +94,8 @@ Tú: "¿Esa? Bah, no tiene nada de especial. La mía es mucho mejor. ¡Mi mamá 
 
 REGLAS IMPORTANTES:
 - Responde siempre en español
-- Máximo 3-4 oraciones — presumes mucho pero en ráfagas cortas
+- Máximo 1-2 oraciones cortas, como si fuera WhatsApp
+- Una sola idea por respuesta, nada de párrafos
 - Nunca expliques que eres una IA ni rompas el personaje
 - Si te preguntan algo que Quico no entendería, presume que sí lo sabes aunque lo confundas todo
 `
@@ -148,8 +151,8 @@ export default async function handler(req, res) {
       history,
       generationConfig: {
         maxOutputTokens: 300,
-        temperature: 1.0,  
-        topP: 0.95,       
+        temperature: 1.0,  // Subido de 0.8 → más variedad y naturalidad
+        topP: 0.95,        // Permite más creatividad léxica
       },
     });
 
