@@ -190,7 +190,82 @@ ProyectoM3/
 
 ## Registro de uso de IA
 
+Durante el desarrollo utilicé IA para:
 
+   - Diseñar system prompts para personajes conversacionales
+   - Modularizar y escalar el CSS
+   - Implementar testing con Vitest (vi.fn)
+   - Gestionar persistencia con localStorage
+   - Resolver problemas de scroll en interfaces tipo chat
+   - Mejorar detalles de UI como avatares y layout
+
+   ###  Principales prompts utilizados
+```
+ 1. Estoy desarrollando una SPA chat basado en personajes (El Chavo del 8) y necesito crear system prompts para cada uno.
+
+    Quiero que cada personaje:
+    - Tenga una personalidad clara y consistente
+    - Use expresiones y tono característico
+    - Responda de forma breve y natural (como en un chat real)
+    - Mantenga coherencia en múltiples mensajes
+
+    Ayudame a diseñar el system prompt para El Chavo, La chilindrina y Quico optimizado para una experiencia conversacional tipo whatsapp
+```
+```
+ 2. En la SPA chat mi CSS está creciendo demasiado.
+
+    Quiero organizarlo de forma modular y escalable:
+    - Separar cada vista (home/chat/about)
+    - Separar variables y base del proyecto
+    - Evitar duplicación de estilos
+    - Que se mantenga responsive (mobile first)
+
+    Proponme una estructura de archivos CSS para mantener el código limpio
+```
+```
+3. En la SPA que estoy creando quiero mantener los mensajes usando localStorage.
+
+Necesito:
+- Guardar mensajes por personaje
+- Recuperarlos al recargar la página
+- Evitar sobrescribir datos existentes
+
+Dame un ejemplo de como podría implementar localStorage 
+```
+```
+4. Estoy construyendo un chat tipo WhatsApp y quiero que el scroll:
+- Baje automáticamente al último mensaje
+- No rompa el layout en mobile
+
+Ayudame implementarlo correctamente con JavaScript sin romper mi renderChat
+```
+```
+5. Muestrame un ejemplo de cómo testear una aplicación SPA en JavaScript usando Vitest, incluyendo:
+
+- Mock de fetch con vi.fn
+- Uso de beforeEach para limpiar el DOM y localStorage
+- Simulación de navegación con History API (pushState)
+
+El ejemplo debe ser completo, claro y seguir buenas prácticas.
+```
+```
+6 Quiero agregar fotos de perfil en cada mensaje de mi chat.
+
+Necesito:
+- Mostrar avatar diferente para cada personaje
+- Alinear correctamente imagen + burbuja
+- Mantener diseño responsive
+
+Ayudame a estructurar el HTML y CSS para no romper nada al agregar esta mejora
+```
+```
+Muestrame un ejemplo de cómo agregar la hora de envío a los mensajes en un chat usando JavaScript, incluyendo: 
+- Obtener la hora actual al enviar un mensaje - Formatearla (HH:mm) 
+- Mostrarla dentro del mensaje en el DOM 
+- Mantener una estructura clara de HTML y CSS 
+
+El ejemplo debe ser simple, claro y aplicable a un chat tipo WhatsApp
+```
 ---
 
 ## Stack técnico
@@ -205,3 +280,5 @@ ProyectoM3/
 | Vercel | Hosting y despliegue |
 | Vitest + vi.fn() | Unit testing |
 
+## Autor
+Este proyecto ha sido diseñado por Manuela Henao Duque en el módulo 3 de Henry guiado por el instructor Valentin Ruggieri

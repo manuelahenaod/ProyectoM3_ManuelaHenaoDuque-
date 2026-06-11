@@ -151,8 +151,8 @@ export default async function handler(req, res) {
       history,
       generationConfig: {
         maxOutputTokens: 300,
-        temperature: 1.0,  // Subido de 0.8 → más variedad y naturalidad
-        topP: 0.95,        // Permite más creatividad léxica
+        temperature: 1.0,  
+        topP: 0.95,        
       },
     });
 
