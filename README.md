@@ -223,48 +223,48 @@ Durante el desarrollo utilicé IA para:
     Proponme una estructura de archivos CSS para mantener el código limpio
 ```
 ```
-3. En la SPA que estoy creando quiero mantener los mensajes usando localStorage.
+3.  En la SPA que estoy creando quiero mantener los mensajes usando localStorage.
 
-Necesito:
-- Guardar mensajes por personaje
-- Recuperarlos al recargar la página
-- Evitar sobrescribir datos existentes
+    Necesito:
+    - Guardar mensajes por personaje
+    - Recuperarlos al recargar la página
+    - Evitar sobrescribir datos existentes
 
-Dame un ejemplo de como podría implementar localStorage 
+    Dame un ejemplo de como podría implementar localStorage 
 ```
 ```
 4. Estoy construyendo un chat tipo WhatsApp y quiero que el scroll:
-- Baje automáticamente al último mensaje
-- No rompa el layout en mobile
+    - Baje automáticamente al último mensaje
+    - No rompa el layout en mobile
 
-Ayudame implementarlo correctamente con JavaScript sin romper mi renderChat
+    Ayudame implementarlo correctamente con JavaScript sin romper mi renderChat
 ```
 ```
 5. Muestrame un ejemplo de cómo testear una aplicación SPA en JavaScript usando Vitest, incluyendo:
 
-- Mock de fetch con vi.fn
-- Uso de beforeEach para limpiar el DOM y localStorage
-- Simulación de navegación con History API (pushState)
+    - Mock de fetch con vi.fn
+    - Uso de beforeEach para limpiar el DOM y localStorage
+    - Simulación de navegación con History API (pushState)
 
-El ejemplo debe ser completo, claro y seguir buenas prácticas.
+    El ejemplo debe ser completo, claro y seguir buenas prácticas.
 ```
 ```
 6 Quiero agregar fotos de perfil en cada mensaje de mi chat.
 
-Necesito:
-- Mostrar avatar diferente para cada personaje
-- Alinear correctamente imagen + burbuja
-- Mantener diseño responsive
+    Necesito:
+    - Mostrar avatar diferente para cada personaje
+    - Alinear correctamente imagen + burbuja
+    - Mantener diseño responsive
 
-Ayudame a estructurar el HTML y CSS para no romper nada al agregar esta mejora
+    Ayudame a estructurar el HTML y CSS para no romper nada al agregar esta mejora
 ```
 ```
-Muestrame un ejemplo de cómo agregar la hora de envío a los mensajes en un chat usando JavaScript, incluyendo: 
-- Obtener la hora actual al enviar un mensaje - Formatearla (HH:mm) 
-- Mostrarla dentro del mensaje en el DOM 
-- Mantener una estructura clara de HTML y CSS 
+7. Muestrame un ejemplo de cómo agregar la hora de envío a los mensajes en un chat usando JavaScript, incluyendo: 
+    - Obtener la hora actual al enviar un mensaje - Formatearla (HH:mm) 
+    - Mostrarla dentro del mensaje en el DOM 
+    - Mantener una estructura clara de HTML y CSS 
 
-El ejemplo debe ser simple, claro y aplicable a un chat tipo WhatsApp
+    El ejemplo debe ser simple, claro y aplicable a un chat tipo WhatsApp
 ```
 ---
 
