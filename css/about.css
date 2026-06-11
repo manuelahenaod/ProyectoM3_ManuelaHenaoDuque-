@@ -3,16 +3,16 @@
   display: flex;
   justify-content: center;
   flex: 1;
-  align-items: center;
+  align-items: flex-start;
   padding: 1rem 2rem;
   min-height: 0;
   }
  
 .about__card {
   width: 100%;
-  max-width: 92vw;
+  max-width: 600px;
   background: white;
-  padding: 1.8rem 1.5rem;
+  padding: 1.5rem 1.2rem;
   border-radius: 20px;
   text-align: center;
   box-shadow: 0 15px 40px rgba(0,0,0,.1);
@@ -69,7 +69,7 @@
  
 .about__credits {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr; 
   gap: .6rem;
 }
  
