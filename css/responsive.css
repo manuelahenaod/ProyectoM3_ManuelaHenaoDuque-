@@ -12,13 +12,7 @@
   /* Navbar */
   .navbar__links {
     display: flex;
-    gap: 1.5rem;
-  }
-
-  .navbar__links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
+    gap: 1rem;
   }
 
   .navbar__hamburger {
@@ -26,12 +20,12 @@
   }
 
   .navbar__title {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .navbar__logo-image {
-    width: 45px;
-    height: 45px;
+    width: 32px;
+    height: 32px;
   }
 
   /* Home — centrado vertical en tablet+ */
@@ -117,12 +111,17 @@
 
   /* Navbar */
   .navbar {
-    padding: 1rem 2rem;
+    padding: .5rem 2rem;
+    gap: 8rem;
+  }
+
+  .navbar__title {
+    font-size: 1.2rem;
   }
 
   .navbar__logo-image {
-    width: 55px;
-    height: 55px;
+    width: 34px;
+    height: 34px;
   }
 
   /* Chat */

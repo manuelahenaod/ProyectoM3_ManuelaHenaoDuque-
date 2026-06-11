@@ -215,12 +215,12 @@ function renderAbout() {
           <span>Inspiración y personajes icónicos</span>
         </div>
         <div class="about__credit-item">
-          <strong>Vercel</strong>
-          <span>Alojamiento Web</span>
+          <strong>Serverless Functions de Vercel</strong>
+          <span>Alojamiento de credenciales</span>
         </div>
         <div class="about__credit-item">
           <strong>ComicSansCon</strong>
-          <span>Proyecto desarrollado en el modulo 3 de Henry</span>
+          <span>Proyecto modulo 3 de Henry</span>
         </div>
       </div>
  
