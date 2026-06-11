@@ -2,9 +2,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 1.5rem 1rem;
-}
+  flex: 1;
+  align-items: center;
+  padding: 1rem 2rem;
+  min-height: 0;
+  }
  
 .about__card {
   width: 100%;
