@@ -1,27 +1,53 @@
-# 🛢️ ComicSansCon AI
-
-Una SPA de chat interactivo donde puedes conversar con los personajes más queridos de **El Chavo del 8**, cada uno impulsado por inteligencia artificial con su propia personalidad y forma de hablar.
+# 🛢️ ComicSansCon
+ComicSansCon es una agencia digital especializada en el desarrollo de experiencias interactivas inspiradas en la cultura pop, incluyendo videojuegos, películas y series de televisión. Su enfoque se centra en crear productos innovadores que conecten emocionalmente con los fans, combinando diseño, tecnología y narrativa para ofrecer experiencias inmersivas y entretenidas.
+En esta SPA puedes conversar con los personajes más queridos de **El Chavo del 8**, cada uno impulsado por inteligencia artificial con su propia personalidad y forma de hablar.
 
 🔗 **App desplegada:** [https://proyecto-m3-manuela-henao.vercel.app/](https://proyecto-m3-manuela-henao.vercel.app/)
 
 ---
 
-## 🎭 Personajes
+## Personajes
 
-### El Chavo del 8
-Niño inocente y distraído que vive en un barril en la vecindad. Habla de forma simple y literal, se confunde con facilidad y siempre tiene hambre. Sus frases más famosas como *"fue sin querer queriendo"* y *"yo no fui"* aparecen naturalmente en la conversación.
+### La vecindad del Chavo del 8
+La vecindad del Chavo del 8 es una serie de televisión mexicana. Es una comedia que sigue la vida cotidiana de un grupo de vecinos que viven en un mismo patio, mostrando sus interacciones, conflictos y momentos divertidos. Y estos son algunos de sus personajes principales:
+
+### El Chavo
+El Chavo es un niño inocente que vive en un barril dentro de la vecindad. Su visión del mundo es simple, literal y llena de confusión, lo que genera situaciones tan graciosas como entrañables.
+
+#### Personalidad implementada
+
+- Inocente y literal: interpreta todo al pie de la letra, incluso expresiones comunes.
+- Distraído: pierde fácilmente el hilo de la conversación o se olvida de lo que iba a decir.
+- Emocional: puede pasar de reír a llorar rápidamente.
+- Amante de la comida: especialmente de las tortas de jamón.
+- Lenguaje imperfecto: comete errores al hablar sin darse cuenta.
 
 ### La Chilindrina
-Hija de Don Ramón. Traviesa, inteligente y muy habladora. Usa sarcasmo ligero, se hace la víctima dramáticamente y llama a su papá cuando la situación se pone difícil. En el fondo tiene cariño por todos.
+La Chilindrina es la niña más astuta de la vecindad. Inteligente, curiosa y algo manipuladora, sabe cómo salirse con la suya, aunque en el fondo es leal a sus amigos.
+
+#### Personalidad implementada
+
+- Pícara y sarcástica: comenta con ironía y humor.
+- Curiosa: siempre quiere saber todo lo que pasa.
+- Dramática: exagera situaciones y puede hacerse la víctima.
+- Inteligente: entiende más que los demás, pero lo usa a su favor.
+- Chismosa: convierte cualquier tema en conversación de vecindad.
 
 ### Quico
-Hijo de Doña Florinda. El niño más mimado de la vecindad. Presume constantemente sus juguetes y todo lo que tiene *"es el mejor del mundo mundial"*. Se enoja rápido pero se le pasa igual de rápido si alguien lo halaga.
+Quico es el niño más consentido de la vecindad. Vive orgulloso de lo que tiene y no pierde oportunidad para presumirlo, aunque en el fondo busca la aprobación de los demás.
+
+#### Personalidad implementada
+
+- Egocéntrico: cree que todo lo suyo es lo mejor.
+- Presumido: exagera constantemente sus posesiones.
+- Dramático: se enoja fácilmente y amenaza con su mamá.
+- Celoso: le cuesta aceptar cuando alguien tiene algo mejor.
+- Dependiente: menciona frecuentemente a su mamá.
 
 ---
 
-## 🖼️ Capturas de pantalla
+## Capturas de pantalla
 
-> Reemplaza las imágenes con tus capturas reales.
 
 | Inicio | Chat | Acerca de |
 |--------|------|-----------|
@@ -29,7 +55,7 @@ Hijo de Doña Florinda. El niño más mimado de la vecindad. Presume constanteme
 
 ---
 
-## ⚙️ Requisitos
+## Requisitos
 
 - Node.js 18+
 - Cuenta en [Google AI Studio](https://aistudio.google.com/) para obtener una `GEMINI_API_KEY`
@@ -41,7 +67,7 @@ npm install -g vercel
 
 ---
 
-## 🚀 Ejecutar en local
+##  Ejecutar en local
 
 ### 1. Clonar el repositorio
 
@@ -84,57 +110,98 @@ npm run test
 
 ---
 
-## 🌐 Desplegar a Vercel
+## Desplegar a Vercel
 
-### Primera vez
-
-```bash
-vercel
-```
-
-Sigue las instrucciones del CLI. Cuando te pregunte por variables de entorno, agrega `GEMINI_API_KEY`.
-
-### Despliegues posteriores
-
-```bash
-vercel --prod
-```
-
-También puedes conectar el repositorio directamente desde el [dashboard de Vercel](https://vercel.com/dashboard) para que cada push a `main` despliegue automáticamente.
+### 1. Subir el proyecto a GitHub
+### 2. Crear cuenta en Vercel
+        -Ve a https://vercel.com
+        -Inicia sesión con tu cuenta de GitHub
+### 3. Importar el proyecto
+       - En el dashboard de Vercel, haz clic en "Add New Project"
+       - Selecciona tu repositorio de GitHub
+       - Haz clic en "Import"
+### 4. Configurar el proyecto
+       - Framework: selecciona Other
+       - Build command: déjalo vacío
+       - Output directory: ./ 
+### 5. Configurar variables de entorno
+       - Ve a Settings → Environment Variables
+       - Agrega GEMINI_API_KEY
+       - Seleccionar "Sensitive"
+### 6. Deploy
+       - Haz clic en Deploy
+       - Espera a que termine el proceso
+       - Vercel te dará una URL pública (ej: https://tu-app.vercel.app)
 
 > **Importante:** asegúrate de configurar `GEMINI_API_KEY` en *Settings → Environment Variables* dentro de tu proyecto en Vercel.
 
+## Estructura del proyecto
+
+```bash
+ProyectoM3/
+│
+├── api/
+│   └── functions.js      # Serverless Function (proxy seguro a la API de IA)
+│                          # Maneja API key y system prompts
+│
+├── css/                  # Estilos modulares (arquitectura por componentes)
+│   ├── about.css
+│   ├── base.css
+│   ├── character-card.css
+│   ├── chat.css
+│   ├── footer.css
+│   ├── home.css
+│   ├── navbar.css
+│   ├── not-found.css
+│   ├── reset.css
+│   ├── responsive.css    # Breakpoints (tablet/ desktop)
+│   └── variables.css     # Variables CSS (colores)
+│
+├── images/               # Assets e imágenes del proyecto
+│
+├── screenshots/          # Capturas de pantalla (README / demo)
+│
+├── tests/                # Testing con Vitest
+│   ├── app.test.js       # Tests de integración (fetch mockeado)
+│   └── utils.test.js     # Tests de funciones puras
+│
+├── app.js                # Router SPA (History API) + renderizado
+├── chat.js               # Lógica del chat + comunicación con backend
+├── utils.js              # Funciones puras 
+│
+├── index.html            # Shell de la SPA (render en #app)
+│
+├── .env                  # Variables de entorno (NO subir)
+├── .env.example          # Template de variables
+├── .gitignore            # Exclusiones (node_modules, .env, etc.)
+│
+├── package.json          # Scripts y dependencias
+├── package-lock.json
+├── vitest.config.js      # Configuración de tests
+│
+├── vercel.json           # Rewrites para SPA routing
+│
+└── README.md             # Documentación del proyecto
+```
+
+
+
 ---
 
-## 🤖 Registro de uso de IA
+## Registro de uso de IA
 
-Este proyecto usa inteligencia artificial en dos niveles:
-
-### En la aplicación
-- **Google Gemini API** (`gemini-3.1-flash-lite`) como motor de conversación. Cada personaje tiene un system prompt personalizado que define su voz, sus frases características y cómo reacciona a distintos temas.
-- La temperatura del modelo se configuró en `1.0` con `topP: 0.95` para lograr respuestas más naturales y menos repetitivas.
-
-### En el desarrollo
-- **Claude (Anthropic)** se usó como asistente de desarrollo para:
-  - Modularizar y organizar la arquitectura CSS en capas (base, componentes, vistas, responsive)
-  - Implementar el diseño mobile-first y resolver problemas de layout con flexbox
-  - Mejorar los system prompts de los personajes para que respondieran con más personalidad
-  - Definir la paleta de colores terracota del proyecto
 
 ---
 
-## 🛠️ Stack técnico
+## Stack técnico
 
 | Tecnología | Uso |
 |-----------|-----|
-| HTML + CSS modular | Estructura y estilos mobile-first |
-| JavaScript vanilla | SPA routing sin frameworks |
+| HTML + CSS | Estructura y estilos mobile-first |
+| Flexbox + Grid / Media queries| Layout |
+| History API | Router SPA |
 | Google Gemini API | Motor de conversación con IA |
 | Vercel Serverless Functions | Backend para llamadas a la API |
 | Vercel | Hosting y despliegue |
+| Vitest + vi.fn() | Unit testing |
 
----
-
-## 👩‍💻 Autora
-
-Desarrollado por **Manuela Henao Duque** · ComicSansCon 2026
