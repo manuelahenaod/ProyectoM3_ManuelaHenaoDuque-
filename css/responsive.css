@@ -112,7 +112,7 @@
   /* Navbar */
   .navbar {
     padding: .5rem 2rem;
-    gap: 8rem;
+    gap:20rem;
   }
 
   .navbar__title {

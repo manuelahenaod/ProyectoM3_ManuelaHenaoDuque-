@@ -9,4 +9,16 @@
   --cream: #f5efe5;
   --white: #ffffff;
   --text: #2f2f2f;
+ 
+  /* Chat */
+  --bg-chat: rgba(245, 239, 229, 0.65);
+  --bg-chat-input: #dce8bf;
+  --bg-message-user: #cfe1f6;
+  --bg-message-bot: #ffffff;
+  --bg-input: #ffffff;
+  --bg-card-solid: #ffffff;
+  --bg-body: #f5efe5;
+  --text-muted: #666666;
+  --border-color: rgba(255, 255, 255, 0.3);
+  --shadow: rgba(0, 0, 0, 0.12);
 }
